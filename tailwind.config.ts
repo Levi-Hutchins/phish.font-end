@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -20,43 +25,41 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#8B5CF6",
-          foreground: "#FFFFFF",
+          DEFAULT: "#9b87f5",
+          dark: "#7E69AB",
         },
-        secondary: {
+        navy: {
           DEFAULT: "#1A1F2C",
-          foreground: "#FFFFFF",
-        },
-        destructive: {
-          DEFAULT: "#EF4444",
-          foreground: "#FFFFFF",
-        },
-        success: {
-          DEFAULT: "#4ADE80",
-          foreground: "#FFFFFF",
-        },
-        muted: {
-          DEFAULT: "#F3F4F6",
-          foreground: "#6B7280",
+          light: "#2A2F3C",
         },
         accent: {
-          DEFAULT: "#F3F4F6",
-          foreground: "#1A1F2C",
+          DEFAULT: "#F6F8FA",
+          dark: "#E1E4E8",
         },
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
       keyframes: {
-        scanning: {
-          "0%, 100%": { transform: "translateX(-100%)" },
-          "50%": { transform: "translateX(100%)" },
+        "fade-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        "fade-in": {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
         },
       },
       animation: {
-        scanning: "scanning 2s ease-in-out infinite",
+        "fade-up": "fade-up 0.5s ease-out",
+        "fade-in": "fade-in 0.5s ease-out",
       },
     },
   },
