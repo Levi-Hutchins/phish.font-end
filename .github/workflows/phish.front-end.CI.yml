@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    name: Build and Test React TypeScript App
+    name: Build and Test Phish Web
     runs-on: ubuntu-latest
 
     strategy:
