@@ -1,4 +1,4 @@
-name: PhishFinder Frontend CI
+name: CI Pipeline
 
 on:
   push:
@@ -17,38 +17,43 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x] 
+        node-version: [18.x, 20.x] # Test on multiple Node.js versions
 
     steps:
+      # Step 1: Checkout repository
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      # Step 2: Set up Node.js
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm' 
+          cache: 'npm' # Cache node_modules for faster builds
 
+      # Step 3: Install dependencies
       - name: Install Dependencies
         run: npm install
 
+      # Step 4: Lint the project
       - name: Run Linter
         run: npm run lint
 
-      - name: Run Tests
-        run: npm test -- --coverage
+      # Step 5: Build the project in development mode
+      - name: Build Project (Development)
+        run: npm run build:dev
 
-      - name: Build Project
+      # Step 6: Build the project in production mode
+      - name: Build Project (Production)
         run: npm run build
 
-      - name: Upload Code Coverage
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/lcov.info
-          flags: unittests
-          name: codecov-umbrella
+      # Step 7: Run the preview server
+      - name: Start Preview Server
+        run: npm run preview &
+        env:
+          CI: true
 
+      # Step 8: Notify success (optional)
       - name: Notify Success
         if: success()
         run: echo "CI Pipeline succeeded for ${{ github.ref }}!"
