@@ -17,7 +17,7 @@ export const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to="#how-it-works" className="text-gray-600 hover:text-primary transition-colors">
+            <Link to="/how-it-works" className="text-gray-600 hover:text-primary transition-colors">
               How it Works
             </Link>
           </li>

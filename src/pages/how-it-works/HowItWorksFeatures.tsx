@@ -1,29 +1,32 @@
-import { Shield, Zap, Lock } from 'lucide-react';
+import { BrainCircuit } from 'lucide-react';
+import { SiCloudflare } from "react-icons/si";
+import { VscAzure } from "react-icons/vsc";
+
 
 const features = [
   {
-    icon: Shield,
-    title: "Real-time Protection",
+    icon: BrainCircuit,
+    title: "Machine Learning",
     description: "Instant URL analysis using advanced AI algorithms to detect sophisticated phishing attempts.",
   },
   {
-    icon: Zap,
-    title: "Lightning Fast",
-    description: "Get results in milliseconds, ensuring your browsing experience stays smooth and uninterrupted.",
+    icon: VscAzure,
+    title: "Azure",
+    description: "Get results in seconds, ensuring your browsing experience stays smooth and uninterrupted.",
   },
   {
-    icon: Lock,
-    title: "Enterprise Security",
-    description: "Bank-grade security measures to protect your organization from evolving cyber threats.",
+    icon: SiCloudflare,
+    title: "Cloudflare",
+    description: "Integrations with Cloudflare and Azure to ensure a high level of pediction accuracy",
   },
 ];
 
-export const Features = () => {
+export const HowItWorksFeatures = () => {
   return (
     <div className="py-24 bg-accent">
       <div className="container">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-          Why Choose PhishFinder?
+          Integrations
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
