@@ -16,13 +16,18 @@ export const HowItWorks = () => {
               description: "Simply paste the suspicious URL into our analyzer.",
             },
             {
-              title: "Advanced Analysis",
-              description: "Our AI engine examines multiple security parameters in real-time.",
+              title: "Cloudflare Scanning",
+              description: "Our Cloudflare integration performs a deep scan on the URL.",
             },
             {
-              title: "Instant Results",
-              description: "Get detailed security insights and recommendations within seconds.",
+              title: "Azure ML Services",
+              description: "The scan results are fed into Azure ML models, to perform further analysis.",
+              
             },
+            {
+              title: "Results & Recommendation",
+              description: "We make a judgement on the link and display critical information to allow you to make an informed decision.",
+            }
           ].map((step, index) => (
             <div
               key={index}

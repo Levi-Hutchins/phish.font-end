@@ -5,12 +5,18 @@ import { toast } from "sonner";
 
 export const Hero = () => {
   const [url, setUrl] = useState('');
+  const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+  const regex = new RegExp(URL_REGEX)
+
+
 
   const handleAnalyze = () => {
-    if (!url) {
-      toast.error("Please enter a URL to analyze");
+
+    if (!url || !regex.test(url)) {
+      toast.error("Please enter a valid URL to analyze");
       return;
     }
+
     toast.success("Analysis started! This is just a demo.");
   };
 
