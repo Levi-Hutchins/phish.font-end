@@ -2,7 +2,7 @@ export const HowItWorks = () => {
   return (
     <div className="py-24 container">
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-        How It Works
+        How PhishFinder Works
       </h2>
       <div className="max-w-3xl mx-auto">
         <div className="relative">

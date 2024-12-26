@@ -17,6 +17,7 @@ export const Hero = () => {
       return;
     }
 
+
     toast.success("Analysis started! This is just a demo.");
   };
 

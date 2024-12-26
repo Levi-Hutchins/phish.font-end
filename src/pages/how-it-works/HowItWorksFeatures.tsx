@@ -7,17 +7,17 @@ const features = [
   {
     icon: BrainCircuit,
     title: "Machine Learning",
-    description: "Instant URL analysis using advanced AI algorithms to detect sophisticated phishing attempts.",
+    description: "ML models are continously training and learning to identify suspicious URL properties.",
   },
   {
     icon: VscAzure,
     title: "Azure",
-    description: "Get results in seconds, ensuring your browsing experience stays smooth and uninterrupted.",
+    description: "Azure AI services are integrated to give intelligent insights.",
   },
   {
     icon: SiCloudflare,
     title: "Cloudflare",
-    description: "Integrations with Cloudflare and Azure to ensure a high level of pediction accuracy",
+    description: "Integrations with Cloudflare to perform in depth scanning.",
   },
 ];
 
