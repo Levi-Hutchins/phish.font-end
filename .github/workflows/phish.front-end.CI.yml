@@ -15,45 +15,79 @@ jobs:
     name: Build and Test Phish Web
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x] # Test on multiple Node.js versions
-
     steps:
       # Step 1: Checkout repository
       - name: Checkout Code
         uses: actions/checkout@v4
 
       # Step 2: Set up Node.js
-      - name: Set up Node.js ${{ matrix.node-version }}
+      - name: Set up Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22
           cache: 'npm' # Cache node_modules for faster builds
 
       # Step 3: Install dependencies
       - name: Install Dependencies
         run: npm install
 
-      # # Step 4: Lint the project
-      # - name: Run Linter
-      #   run: npm run lint
-
-      # Step 5: Build the project in development mode
+      # Step 4: Build the project in development mode
       - name: Build Project (Development)
         run: npm run build:dev
 
-      # Step 6: Build the project in production mode
+      # Step 5: Build the project in production mode
       - name: Build Project (Production)
         run: npm run build
 
-      # Step 7: Run the preview server
+      # Step 6: Run the preview server
       - name: Start Preview Server
         run: npm run preview &
         env:
           CI: true
 
-      # Step 8: Notify success (optional)
+      # Step 7: Notify success (optional)
       - name: Notify Success
         if: success()
         run: echo "CI Pipeline succeeded for ${{ github.ref }}!"
+
+  codeql:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - language: javascript-typescript
+          build-mode: none
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+
+      - if: matrix.build-mode == 'manual'
+        shell: bash
+        run: |
+          echo 'If you are using a "manual" build mode for one or more of the'
+          echo 'languages you are analyzing, replace this with the commands to build'
+          echo 'your code, for example:'
+          echo '  make bootstrap'
+          echo '  make release'
+          exit 1
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"

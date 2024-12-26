@@ -1,4 +1,4 @@
-import { Shield, Zap, Lock } from 'lucide-react';
+import { Shield, Zap, Crosshair } from 'lucide-react';
 
 const features = [
   {
@@ -9,16 +9,16 @@ const features = [
   {
     icon: Zap,
     title: "Lightning Fast",
-    description: "Get results in milliseconds, ensuring your browsing experience stays smooth and uninterrupted.",
+    description: "Get results in seconds, ensuring your browsing experience stays smooth and uninterrupted.",
   },
   {
-    icon: Lock,
-    title: "Enterprise Security",
-    description: "Bank-grade security measures to protect your organization from evolving cyber threats.",
+    icon: Crosshair,
+    title: "High Accuracy",
+    description: "Integrations with Cloudflare and Azure to ensure a high level of pediction accuracy",
   },
 ];
 
-export const Features = () => {
+export const IndexFeatures = () => {
   return (
     <div className="py-24 bg-accent">
       <div className="container">
